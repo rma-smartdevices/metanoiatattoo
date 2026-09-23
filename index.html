@@ -1,0 +1,493 @@
+```html
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Metanoia Tattoo By Nicole</title>
+
+    <style>
+      /* =========================================================
+         BASE
+         ========================================================= */
+
+      * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      html,
+      body {
+        background-color: #160d14;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100svh;
+      }
+
+      .bg {
+        background: url("/monetmedia/img/bg.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        min-height: 102svh;
+        width: 100%;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      /* =========================================================
+         PROFILE HEADER
+         ========================================================= */
+
+      header {
+        color: white;
+        width: 100%;
+        text-align: center;
+        position: relative;
+      }
+
+      /* ========================================================= PROFILE BANNER ========================================================= */
+      .profile-banner {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden; /* Keeps the banner flush with the top of the page */
+        margin: 0;
+        padding: 0;
+        background-color: #160d14;
+      } /* * Blurred banner image * * Using a pseudo-element keeps the actual banner image * separate from the overlay effects. */
+      .profile-banner::before {
+        content: "";
+        position: absolute;
+        inset: -12px;
+        background-image: url("/img/banner.jpg");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        filter: blur(8px);
+        transform: scale(1.03);
+        z-index: 0;
+      } /* * Subtle vignette / dark overlay. * * The center stays visible while the edges become darker, * helping the profile picture and text stand out. */
+      .profile-banner::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 20, 147, 0.04) 0%,
+          rgba(0, 0, 0, 0.1) 45%,
+          rgba(0, 0, 0, 0.55) 100%
+        );
+        pointer-events: none;
+        z-index: 1;
+      } /* * Hide the actual <img>. * * The pseudo-element above handles the banner image. */
+      .profile-banner img {
+        display: none;
+      }
+      .profile-banner {
+        width: 100%;
+        height: 220px;
+
+        position: relative;
+        overflow: hidden;
+
+        /* Slightly round the bottom corners */
+        border-radius: 0 0 12px 12px;
+      }
+
+      /* Actual banner image */
+
+      .profile-banner img {
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+        object-position: center;
+
+        /*
+         * Bokeh effect:
+         * The blur creates soft shapes/lights in the background
+         * while keeping the banner visually recognizable.
+         */
+        filter: blur(8px);
+
+        /*
+         * Slightly enlarge the image so the blur doesn't
+         * expose transparent edges.
+         */
+        transform: scale(1.08);
+      }
+
+      /* =========================================================
+         SUBTLE VIGNETTE + PINK OVERLAY
+         ========================================================= */
+
+      .profile-banner::after {
+        content: "";
+
+        position: absolute;
+        inset: 0;
+
+        pointer-events: none;
+
+        /*
+         * Subtle vignette:
+         * Darker around the edges, slightly clearer in the center.
+         *
+         * The pink tint keeps the visual style consistent with
+         * the site's neon-pink / black / white color palette.
+         */
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 20, 147, 0.04) 0%,
+          rgba(0, 0, 0, 0.08) 45%,
+          rgba(0, 0, 0, 0.58) 100%
+        );
+
+        z-index: 1;
+      }
+
+      /* =========================================================
+         PROFILE INFORMATION
+         ========================================================= */
+
+      .profile-info {
+        position: relative;
+
+        /*
+         * Pulls the profile picture upward so it overlaps
+         * the bottom of the banner.
+         */
+        margin-top: -65px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 0 1em 1em;
+
+        z-index: 2;
+      }
+
+      /* =========================================================
+         PROFILE PICTURE
+         ========================================================= */
+
+      .profile-pic {
+        width: 130px;
+        height: 130px;
+
+        border-radius: 50%;
+        object-fit: cover;
+
+        /*
+         * Neon pink border
+         */
+        border: 5px solid #ff1493;
+
+        background-color: #160d14;
+
+        /*
+         * Dark separation ring + subtle pink glow
+         */
+        box-shadow:
+          0 0 0 4px rgba(0, 0, 0, 0.8),
+          0 0 20px rgba(255, 20, 147, 0.65);
+
+        margin-bottom: 0.75em;
+      }
+
+      /* =========================================================
+         PROFILE NAME
+         ========================================================= */
+
+      h1 {
+        margin: 0.2em 0;
+
+        font-size: 2em;
+
+        padding: 0.25em 0.7em;
+
+        color: white;
+
+        background-color: rgba(0, 0, 0, 0.65);
+
+        border-radius: 50em;
+
+        text-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
+      }
+
+      p {
+        color: white;
+
+        margin: 0.5em 0 1em;
+        padding: 0.1em;
+
+        display: inline-block;
+      }
+
+      /* =========================================================
+         SOCIAL / CONTACT LINKS
+         ========================================================= */
+
+      .links {
+        width: 90%;
+        max-width: 300px;
+
+        margin: 1em 0 0;
+      }
+
+      .link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: white;
+
+        margin: 0.5em 0 1.5em;
+        padding: 1em;
+
+        border-radius: 8px;
+
+        text-decoration: none;
+        color: #222;
+
+        font-weight: bold;
+
+        transition:
+          background-color 0.3s,
+          transform 0.2s,
+          box-shadow 0.3s;
+
+        position: relative;
+      }
+
+      .link:hover {
+        background-color: #ffd6ed;
+
+        transform: translateY(-2px);
+
+        box-shadow: 0 0 15px rgba(255, 20, 147, 0.45);
+      }
+
+      .link-logo {
+        margin: 0.1em 1em 0 0;
+
+        width: 24px;
+        height: 24px;
+
+        border-radius: 4px;
+      }
+
+      /* =========================================================
+         FOOTER
+         ========================================================= */
+
+      footer {
+        min-width: 100svw;
+
+        padding: 0.5em 0 0;
+
+        background-color: #24151f;
+
+        margin-top: auto;
+
+        font-size: 14px;
+        text-align: center;
+
+        border-radius: 45em 45em 0 0;
+
+        border-top: 1px solid rgba(255, 20, 147, 0.35);
+      }
+
+      footer span {
+        color: #ff1493;
+        font-weight: bold;
+      }
+
+      footer a {
+        color: ghostwhite;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      #copyright {
+        color: ghostwhite;
+
+        padding: 0.2em;
+        margin: 1em 0;
+      }
+
+      /* =========================================================
+         MOBILE
+         ========================================================= */
+
+      @media (max-width: 768px) {
+        .profile-banner {
+          height: 180px;
+        }
+
+        .profile-banner img {
+          filter: blur(7px);
+        }
+
+        .profile-info {
+          margin-top: -55px;
+        }
+
+        .profile-pic {
+          width: 110px;
+          height: 110px;
+        }
+
+        h1 {
+          font-size: 1.6em;
+        }
+      }
+
+      /* =========================================================
+         SMALLER PHONES
+         ========================================================= */
+
+      @media (max-width: 480px) {
+        .profile-banner {
+          height: 160px;
+        }
+
+        .profile-banner img {
+          filter: blur(6px);
+        }
+
+        .profile-pic {
+          width: 100px;
+          height: 100px;
+        }
+
+        .profile-info {
+          margin-top: -50px;
+        }
+
+        h1 {
+          font-size: 1.35em;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg">
+      <!-- =======================================================
+           PROFILE HEADER
+           ======================================================= -->
+
+      <header>
+        <!--
+          Banner image.
+
+          Replace this file:
+          /img/banner.jpg
+
+          with the image you want to use as the banner.
+        -->
+
+        <div class="profile-banner">
+          <img
+            src="/Metanoia Tattoo By Nicole/img/banner.jpg"
+            alt="Metanoia Tattoo By Nicole banner"
+          />
+        </div>
+
+        <!-- Profile picture + business information -->
+
+        <div class="profile-info">
+          <img
+            class="profile-pic"
+            src="/Metanoia Tattoo By Nicole/img/bg.jpg"
+            alt="Metanoia Tattoo By Nicole profile picture"
+          />
+
+          <h1>Metanoia Tattoo By Nicole 🤍</h1>
+
+          <p>
+            Especialidad Lineales & Wipshading
+            <br />
+            📸 Vega Baja, P.R. 📍🇵🇷 | 📱 787-500-2767
+            <br />
+            Owner: @__.n.baez
+          </p>
+        </div>
+      </header>
+
+      <!-- =======================================================
+           LINKS
+           ======================================================= -->
+
+      <div class="links">
+        <a
+          class="link"
+          href="https://instagram.com/metanoiatattoo_"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            class="link-logo"
+            src="/Metanoia Tattoo By Nicole/img/gram_logo.png"
+            alt="Instagram logo"
+          />
+
+          Instagram
+        </a>
+        <a
+          class="link"
+          href="https://facebook.com/metanoiatattoo_"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            class="link-logo"
+            src="/Metanoia Tattoo By Nicole/img/facebook.png"
+            alt="Facebook logo"
+          />
+
+          Facebook
+        </a>
+
+        <a class="link" href="tel:4133069008">
+          <img
+            class="link-logo"
+            src="/Metanoia Tattoo By Nicole/img/contact_logo.jpg"
+            alt="Phone logo"
+          />
+
+          Contact Me
+        </a>
+      </div>
+
+      <!-- =======================================================
+           FOOTER
+           ======================================================= -->
+
+      <footer>
+        <p id="copyright">
+          © 2026 <span>ThriveNFC</span> | All Rights Reserved.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
+```
