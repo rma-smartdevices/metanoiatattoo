@@ -279,6 +279,55 @@
         box-shadow: 0 0 15px rgba(255, 20, 147, 0.45);
       }
 
+      .link {
+        background-color: rgba(15, 8, 13, 0.92);
+        border: 1px solid rgba(255, 20, 147, 0.75);
+
+        color: white;
+
+        box-shadow:
+          0 0 6px rgba(255, 20, 147, 0.25),
+          inset 0 0 6px rgba(255, 20, 147, 0.08);
+
+        text-shadow: 0 0 5px rgba(255, 20, 147, 0.35);
+
+        animation: subtleNeonGlow 3.5s ease-in-out infinite;
+      }
+
+      /* Gentle breathing glow */
+      @keyframes subtleNeonGlow {
+        0%,
+        100% {
+          box-shadow:
+            0 0 6px rgba(255, 20, 147, 0.25),
+            inset 0 0 6px rgba(255, 20, 147, 0.08);
+        }
+
+        50% {
+          box-shadow:
+            0 0 10px rgba(255, 20, 147, 0.38),
+            0 0 18px rgba(255, 20, 147, 0.12),
+            inset 0 0 7px rgba(255, 20, 147, 0.1);
+        }
+      }
+
+      /* Slightly stronger glow when hovering */
+      .link:hover {
+        background-color: rgba(35, 10, 27, 0.95);
+
+        box-shadow:
+          0 0 10px rgba(255, 20, 147, 0.5),
+          0 0 20px rgba(255, 20, 147, 0.18),
+          inset 0 0 8px rgba(255, 20, 147, 0.12);
+      }
+
+      /* Respect reduced-motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        .link {
+          animation: none;
+        }
+      }
+
       .link-logo {
         margin: 0.1em 1em 0 0;
 
@@ -420,9 +469,11 @@
           <p>
             Especialidad Lineales & Wipshading
             <br />
-            📸 Vega Baja, P.R. 📍🇵🇷 | 📱 787-500-2767
-            <br />
-            Owner: @__.n.baez
+            <a
+              href="/Users/ricardomoreno/Library/Group Containers/group.com.apple.coreservices.useractivityd/shared-pasteboard/items/489D3026-87CA-47A9-8E51-93BF49A74CAA/4a5c44ad4edf97d2efddaedd9d8a4a2bfa54741d.rtfd"
+              style="color: pink"
+              >Vega Baja, P.R. 📍🇵🇷
+            </a>
           </p>
         </div>
       </header>
@@ -434,7 +485,7 @@
       <div class="links">
         <a
           class="link"
-          href="https://instagram.com/metanoiatattoo_"
+          href="https://www.instagram.com/metanoiatattoo_/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -448,7 +499,7 @@
         </a>
         <a
           class="link"
-          href="https://facebook.com/metanoiatattoo_"
+          href="https://www.facebook.com/share/1CAdo15ADv/?mibextid=wwXIfr"
           target="_blank"
           rel="noopener noreferrer"
         >
